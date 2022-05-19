@@ -12,7 +12,6 @@ namespace ContactRegistrationMVC.Controllers
         public IActionResult Create()
         {
 
-            
             return View();
         }
 
@@ -21,7 +20,7 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        public IActionResult ConfirmDelete()
         {
             return View();
         }

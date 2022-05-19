@@ -1,65 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Create contact";
+    ViewData["Title"] = "Registration contact";
 }
 
 <div class="text-center">
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn border-dark" role="banner">Add new contacts</a>
-    </div>
-
-    <h1>Contact listing</h1>
-     <br />
-
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-    
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark Otto</td>
-      <td>markotto@outlook.com</td>
-      <td>98942344343</td>
-      <td>
-         <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
-         </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob Get</td>
-      <td>jacobget@gmail.com</td>
-      <td>98957485673</td>
-       <td>
-         <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
-         </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>larrythebird@outlook.com</td>
-      <td>98937475732</td>
-       <td>
-         <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
-         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+    <h1>Registration contact</h1>
 </div>
 
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+    <small id="emailHelp" class="form-text text-muted">Register your name</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">E-mail</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter e-mail">
+     <small id="emailHelp" class="form-text text-muted">Register your number phone</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contact number</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter contact number">
+     <small id="emailHelp" class="form-text text-muted">Register your number phone</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+  <a class="btn alert-secondary" asp-controller="Contact" asp-action="Index" role="button">Return</a>
+</form>

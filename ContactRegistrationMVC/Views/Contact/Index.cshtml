@@ -5,7 +5,7 @@
 <div class="text-center">
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn border-dark" role="banner">Add new contacts</a>
+        <a class="btn border-dark" role="banner" asp-controller="Contact" asp-action="Create">Add new contacts</a>
     </div>
 
     <h1>Contact listing</h1>
@@ -29,8 +29,8 @@
       <td>98942344343</td>
       <td>
          <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
+             <a role="button" class="btn btn-outline-success" asp-controller="Contact" asp-action="Edit">Edit to</a>
+             <a role="button" class="btn btn-outline-danger" asp-controller="Contact" asp-action="ConfirmDelete">Delete</a>
          </div>
       </td>
     </tr>
@@ -41,8 +41,8 @@
       <td>98957485673</td>
        <td>
          <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
+             <a role="button" class="btn btn-outline-success" asp-controller="Contact" asp-action="Edit">Edit to</a>
+             <a role="button" class="btn btn-outline-danger" asp-controller="Contact" asp-action="ConfirmDelete">Delete</a>
          </div>
       </td>
     </tr>
@@ -53,8 +53,8 @@
       <td>98937475732</td>
        <td>
          <div class="btn-group" role="group" aria-label="basic example">
-             <a role="button" class="btn btn-outline-success">Editar</a>
-             <a role="button" class="btn btn-outline-danger">Apagar</a>
+             <a role="button" class="btn btn-outline-success"  asp-controller="Contact" asp-action="Edit">Edit to</a>
+             <a role="button" class="btn btn-outline-danger" asp-controller="Contact" asp-action="confirmDelete">Delete</a>
          </div>
       </td>
     </tr>
