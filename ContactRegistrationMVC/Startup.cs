@@ -1,4 +1,5 @@
 using ContactRegistrationMVC.Data;
+using ContactRegistrationMVC.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace ContactRegistrationMVC
         {
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<DataContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IContactRepository, ContactRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
