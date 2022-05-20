@@ -2,7 +2,7 @@
 
 namespace ContactRegistrationMVC.Migrations
 {
-    public partial class CreatingContactTables : Migration
+    public partial class AddContactMigrationDatase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

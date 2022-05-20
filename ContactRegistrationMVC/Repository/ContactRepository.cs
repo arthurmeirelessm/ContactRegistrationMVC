@@ -1,5 +1,7 @@
 ﻿using ContactRegistrationMVC.Data;
 using ContactRegistrationMVC.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ContactRegistrationMVC.Repository
 {
@@ -20,6 +22,11 @@ namespace ContactRegistrationMVC.Repository
             _dataContext.SaveChanges();
 
             return contact;
+        }
+
+        public List<ContactModel> SeachAll()
+        {
+            return _dataContext.Contacts.ToList();
         }
     }
 }

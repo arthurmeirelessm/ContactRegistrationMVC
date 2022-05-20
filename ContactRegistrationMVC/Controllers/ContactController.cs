@@ -1,6 +1,7 @@
 ﻿using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ContactRegistrationMVC.Controllers
 {
@@ -16,13 +17,16 @@ namespace ContactRegistrationMVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            List<ContactModel> seachAll = _contactRepository.SeachAll();
+            return View(seachAll);
+           
         }
 
        
         public IActionResult Create()
         {
-            return View();
+           return View();   
         }
 
         public IActionResult Edit()
@@ -34,6 +38,11 @@ namespace ContactRegistrationMVC.Controllers
         {
             return View();
         }
+        public IActionResult NumberToEdit()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
@@ -42,5 +51,6 @@ namespace ContactRegistrationMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

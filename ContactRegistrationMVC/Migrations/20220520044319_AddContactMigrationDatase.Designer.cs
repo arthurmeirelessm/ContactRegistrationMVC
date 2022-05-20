@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactRegistrationMVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220519051400_CreatingContactTables")]
-    partial class CreatingContactTables
+    [Migration("20220520044319_AddContactMigrationDatase")]
+    partial class AddContactMigrationDatase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

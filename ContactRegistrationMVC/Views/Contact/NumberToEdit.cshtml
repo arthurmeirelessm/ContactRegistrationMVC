@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Number to edit";
+}
+
+<div class="text-center">
+    <h1>Number to edit contact</h1>
+</div>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Number</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter with number do you want change infos">
+  </div>
+  <button type="submit"  asp-controller="Contact" asp-action="Edit" class="btn btn-primary">Edit</button>
+  <a class="btn alert-secondary" asp-controller="Contact" asp-action="Index" role="button">Return</a>
+</form>
