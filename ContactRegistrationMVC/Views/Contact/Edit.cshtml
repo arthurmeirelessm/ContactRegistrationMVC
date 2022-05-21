@@ -8,22 +8,28 @@
     <h1>Edit contact</h1>
 </div>
 
-<form asp-controller="Contact" asp-action="Edit" method="pu">
- <div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit name">
-    <small id="emailHelp" class="form-text text-muted">Edit your name</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">E-mail</label>
-    <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword1" placeholder="Edit e-mail">
-     <small id="emailHelp" class="form-text text-muted">Edit your number phone</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contact number</label>
-    <input type="number" asp-for="Number" class="form-control" id="exampleInputPassword1" placeholder="Edit contact number">
-     <small id="emailHelp" class="form-text text-muted">Edit your number phone</small>
-  </div>
-  <button type="submit" class="btn btn-primary">Edit</button>
-  <a class="btn alert-secondary" asp-controller="Contact" asp-action="Index" role="button">Return</a>
+<form asp-controller="Contact" asp-action="Edit" method="post">
+
+
+     <input type="hidden" asp-for="Id">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit name">
+        <small id="emailHelp" class="form-text text-muted">Edit your name</small>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">E-mail</label>
+        <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword1" placeholder="Edit e-mail">
+        <small id="emailHelp" class="form-text text-muted">Edit your number phone</small>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Contact number</label>
+        <input type="number" asp-for="Number" class="form-control" id="exampleInputPassword1" placeholder="Edit contact number">
+        <small id="emailHelp" class="form-text text-muted">Edit your number phone</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a class="btn alert-secondary" asp-action="Index"  asp-controller="Contact" role="button">Return</a>
+
 </form>

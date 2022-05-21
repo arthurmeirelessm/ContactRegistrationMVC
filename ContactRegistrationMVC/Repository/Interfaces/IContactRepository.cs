@@ -5,9 +5,9 @@ namespace ContactRegistrationMVC.Repository
 {
     public interface IContactRepository
     {
-        public List<ContactModel> SeachAll();  
+        public List<ContactModel> SeachAll();
         public ContactModel Add(ContactModel contact);
-
-        public ContactModel ListById(int id); 
+        public ContactModel ListById(int id);
+        public ContactModel UpdateEdit(ContactModel contact);
     }
 }

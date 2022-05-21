@@ -39,11 +39,7 @@ namespace ContactRegistrationMVC.Controllers
         {
             return View();
         }
-        public IActionResult NumberToEdit()
-        {
-            return View();
-        }
-
+       
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
@@ -53,17 +49,13 @@ namespace ContactRegistrationMVC.Controllers
             return RedirectToAction("Index");
         }
 
-       /* [HttpPut]
-        public IActionResult NumberToEdit(ContactModel contact)
+        [HttpPost]
+        public IActionResult Edit(ContactModel contact)
         {
-            var identification = 
-
-            _contactRepository.Add(contact);
-
+            _contactRepository.UpdateEdit(contact);
 
             return RedirectToAction("Index");
-
-        }*/
+        }
 
     }
 }

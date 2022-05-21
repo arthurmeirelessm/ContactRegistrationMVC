@@ -36,7 +36,23 @@ namespace ContactRegistrationMVC.Repository
             return _dataContext.Contacts.ToList();
         }
 
+        public ContactModel UpdateEdit(ContactModel contact)
+        {
+            ContactModel identificationDb = ListById(contact.Id);
 
-    
+            if (identificationDb is null)
+            {
+                throw new System.Exception("Error of update (No Id compatible)");
+            }
+            
+            identificationDb.Name = contact.Name;
+            identificationDb.Email = contact.Email;
+            identificationDb.Number = contact.Number;
+
+            _dataContext.Contacts.Update(identificationDb);
+            _dataContext.SaveChanges();
+
+            return identificationDb;    
+        }
     }
 }
