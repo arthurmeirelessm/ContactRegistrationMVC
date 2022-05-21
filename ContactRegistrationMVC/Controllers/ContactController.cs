@@ -35,11 +35,12 @@ namespace ContactRegistrationMVC.Controllers
             return View(contact);
         }
 
-        public IActionResult ConfirmDelete()
+        public IActionResult ConfirmDelete(int id)
         {
-            return View();
+            ContactModel contact = _contactRepository.ListById(id);
+            return View(contact);
         }
-       
+        
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
@@ -53,6 +54,13 @@ namespace ContactRegistrationMVC.Controllers
         public IActionResult Edit(ContactModel contact)
         {
             _contactRepository.UpdateEdit(contact);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteContact(int id)
+        {
+            _contactRepository.Delete(id);
 
             return RedirectToAction("Index");
         }

@@ -9,5 +9,6 @@ namespace ContactRegistrationMVC.Repository
         public ContactModel Add(ContactModel contact);
         public ContactModel ListById(int id);
         public ContactModel UpdateEdit(ContactModel contact);
+        public bool Delete(int id); 
     }
 }

@@ -24,6 +24,23 @@ namespace ContactRegistrationMVC.Repository
             return contact;
         }
 
+        public bool Delete(int id)
+        {
+            ContactModel identificationDb = ListById(id);
+
+            if (identificationDb is null)
+            {
+                throw new System.Exception("Error of delete (No Id compatible)");
+            }
+
+            _dataContext.Contacts.Remove(identificationDb);
+
+            _dataContext.SaveChanges();
+
+            return true;
+
+        }
+
         public ContactModel ListById(int id)
         {
           var identification = _dataContext.Contacts.FirstOrDefault(x => x.Id == id);
