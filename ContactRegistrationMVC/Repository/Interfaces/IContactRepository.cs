@@ -7,5 +7,7 @@ namespace ContactRegistrationMVC.Repository
     {
         public List<ContactModel> SeachAll();  
         public ContactModel Add(ContactModel contact);
+
+        public ContactModel ListById(int id); 
     }
 }

@@ -24,9 +24,19 @@ namespace ContactRegistrationMVC.Repository
             return contact;
         }
 
+        public ContactModel ListById(int id)
+        {
+          var identification = _dataContext.Contacts.FirstOrDefault(x => x.Id == id);
+
+            return identification;
+        }
+
         public List<ContactModel> SeachAll()
         {
             return _dataContext.Contacts.ToList();
         }
+
+
+    
     }
 }
