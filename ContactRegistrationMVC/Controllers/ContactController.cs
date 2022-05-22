@@ -64,7 +64,7 @@ namespace ContactRegistrationMVC.Controllers
                 if (ModelState.IsValid)
                 {
                     _contactRepository.Add(contact);
-                    TempData["Message success"] = "Contact registration with success";
+                    TempData["MessageSuccess"] = "Contact registration with success";
                     return RedirectToAction("Index");
                 }
 
@@ -72,7 +72,7 @@ namespace ContactRegistrationMVC.Controllers
             }
             catch (System.Exception error)
             {
-                TempData["Message failed"] = $"Contact not registration. Error message {error.Message}";
+                TempData["MessageFailed"] = $"Contact not registration. Error message {error.Message}";
                 return RedirectToAction("Index");
             }
         }
@@ -85,24 +85,40 @@ namespace ContactRegistrationMVC.Controllers
                 if (ModelState.IsValid)
                 {
                     _contactRepository.UpdateEdit(contact);
-                    TempData["Message success"] = "Contact changed with success";
+                    TempData["MessageSuccess"] = "Contact changed with success";
                     return RedirectToAction("Index");
                 }
                 return View(contact);
-            } 
+            }
             catch (System.Exception error)
             {
-                TempData["Message failed"] = $"Contact not changed. Error message {error.Message}";
+                TempData["MessageFailed"] = $"Contact not changed. Error message {error.Message}";
                 return RedirectToAction("Index");
             }
         }
 
         public IActionResult DeleteContact(int id)
         {
-            _contactRepository.Delete(id);
+            try
+            {
+                bool wipedOut = _contactRepository.Delete(id);
+                if (wipedOut)
+                {
+                    TempData["MessageSuccess"] = "Contact deleted with success";
+                    return RedirectToAction("Index");
+                } else
+                {
+                    TempData["MessageFailed"] = "Contact not deleted.";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception error)
+            {
+                TempData["MessageFailed"] = $"Contact not deleted. Error message {error.Message}";
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");
+
         }
-
     }
 }
