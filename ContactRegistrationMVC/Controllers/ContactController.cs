@@ -8,7 +8,7 @@ namespace ContactRegistrationMVC.Controllers
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;
-     
+
 
         public ContactController(IContactRepository contactRepository)
         {
@@ -24,13 +24,13 @@ namespace ContactRegistrationMVC.Controllers
 
             List<ContactModel> seachAll = _contactRepository.SeachAll();
             return View(seachAll);
-           
+
         }
 
-       
+
         public IActionResult Create()
         {
-           return View();   
+            return View();
         }
 
         public IActionResult Edit(int id)
@@ -52,35 +52,51 @@ namespace ContactRegistrationMVC.Controllers
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-           //Segue o seguinte pensamento dos comentários nesse metodo! 
-           //Esse If é pra validar se a model passada está no padrão de validação como ter um campo obrigatorio ou qualquer tipo de regex
-           //Essa validação é feita pelo ModelState e passada com o isValid
-           //Caso a model esteja válida, ele fará o crud de criação de usuario e retornará para a tela "index"
-           //caso não, será redirecionado para a mesma tela, que é a do seu View de create
-           //Pensamento paralelo ao de chatbots, REDIRECIONAMENTO DE TELAS apartir de validações e não REDIRECIONAMENTO DE BLOCOS
+            //Segue o seguinte pensamento dos comentários nesse metodo! 
+            //Esse If é pra validar se a model passada está no padrão de validação como ter um campo obrigatorio ou qualquer tipo de regex
+            //Essa validação é feita pelo ModelState e passada com o isValid
+            //Caso a model esteja válida, ele fará o crud de criação de usuario e retornará para a tela "index"
+            //caso não, será redirecionado para a mesma tela, que é a do seu View de create
+            //Pensamento paralelo ao de chatbots, REDIRECIONAMENTO DE TELAS apartir de validações e não REDIRECIONAMENTO DE BLOCOS
 
-           if (ModelState.IsValid)
+            try
             {
-                _contactRepository.Add(contact);
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Add(contact);
+                    TempData["Message success"] = "Contact registration with success";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (System.Exception error)
+            {
+                TempData["Message failed"] = $"Contact not registration. Error message {error.Message}";
                 return RedirectToAction("Index");
             }
-
-           return View(contact);
         }
 
         [HttpPost]
         public IActionResult Edit(ContactModel contact)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-                _contactRepository.UpdateEdit(contact);
-
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.UpdateEdit(contact);
+                    TempData["Message success"] = "Contact changed with success";
+                    return RedirectToAction("Index");
+                }
+                return View(contact);
+            } 
+            catch (System.Exception error)
+            {
+                TempData["Message failed"] = $"Contact not changed. Error message {error.Message}";
                 return RedirectToAction("Index");
             }
-            return View(contact);
-        }   
-        
+        }
+
         public IActionResult DeleteContact(int id)
         {
             _contactRepository.Delete(id);

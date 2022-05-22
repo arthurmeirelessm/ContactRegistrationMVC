@@ -12,15 +12,20 @@
 
     <br />
 
-     <div class="alert alert-success" role="alert">
-       <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button> 
-       This is a success alert—check it out!>
-    </div>
-
-    <div class="alert alert-danger" role="alert">
-      <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
-      This is a danger alert—check it out!
-</div>
+    @if (TempData["Message success"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["Message success"]
+        </div>
+    }
+    
+     @if (TempData["Message failed"] != null) {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["Message failed"]
+        </div>
+    }
 
     <h1>Contact listing</h1>
     <br />
