@@ -10,8 +10,21 @@
         <a class="btn border-dark" role="banner" asp-controller="Contact" asp-action="Create">Add new contacts</a>
     </div>
 
+    <br />
+
+     <div class="alert alert-success" role="alert">
+       <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button> 
+       This is a success alert—check it out!>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+      This is a danger alert—check it out!
+</div>
+
     <h1>Contact listing</h1>
     <br />
+
 
     <table class="table table-dark table-striped">
         <thead>
@@ -26,10 +39,10 @@
         <tbody>
             @if (Model == null || !Model.Any())
             {
-             <h2>No contact number at the moment</h2> 
-             <br />
+                <h2>No contact number at the moment</h2>
+                <br />
             }
-             @if (Model != null && Model.Any())
+            @if (Model != null && Model.Any())
             {
                 foreach (var item in Model)
                 {
