@@ -15,6 +15,10 @@ namespace ContactRegistrationMVC.Controllers
             _contactRepository = contactRepository;
         }
 
+        //METODOS VIEWS, RETORNA SEMPRE REDIRECIONAMENTO DE TELA
+        //Quando for realzar o CRUD, sempre indicar o tipo de metodo que aquela tela precisará
+        //como no metodo "Index" abaixo, que busca o metdo seachAll que está dentro de _contactRepository
+        //Isso indicará que essa tela precisará foi uma busca de todos os contatos registrados no backEnd
         public IActionResult Index()
         {
 
@@ -40,24 +44,43 @@ namespace ContactRegistrationMVC.Controllers
             ContactModel contact = _contactRepository.ListById(id);
             return View(contact);
         }
-        
+
+        //Metodos que puxam os outros metodos que tratam o que precisam do _dataContext
+        //No exemplo abaixo, o metodo Create chama o metodo Add que esta dentro de _contactRepository
+        //O objetivo é separar bem os metodos de Views que estão a cima e as de Ação que estão aqui em baixo
 
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-            _contactRepository.Add(contact);
+           //Segue o seguinte pensamento dos comentários nesse metodo! 
+           //Esse If é pra validar se a model passada está no padrão de validação como ter um campo obrigatorio ou qualquer tipo de regex
+           //Essa validação é feita pelo ModelState e passada com o isValid
+           //Caso a model esteja válida, ele fará o crud de criação de usuario e retornará para a tela "index"
+           //caso não, será redirecionado para a mesma tela, que é a do seu View de create
+           //Pensamento paralelo ao de chatbots, REDIRECIONAMENTO DE TELAS apartir de validações e não REDIRECIONAMENTO DE BLOCOS
 
-            return RedirectToAction("Index");
+           if (ModelState.IsValid)
+            {
+                _contactRepository.Add(contact);
+                return RedirectToAction("Index");
+            }
+
+           return View(contact);
         }
 
         [HttpPost]
         public IActionResult Edit(ContactModel contact)
         {
-            _contactRepository.UpdateEdit(contact);
 
-            return RedirectToAction("Index");
-        }
+            if (ModelState.IsValid)
+            {
+                _contactRepository.UpdateEdit(contact);
 
+                return RedirectToAction("Index");
+            }
+            return View(contact);
+        }   
+        
         public IActionResult DeleteContact(int id)
         {
             _contactRepository.Delete(id);
