@@ -14,6 +14,8 @@ namespace ContactRegistrationMVC.Data
 
 
         public DbSet<ContactModel> Contacts { get; set; }
+         public DbSet<UserModel> UserModels { get; set; }
+
 
     }
 }
