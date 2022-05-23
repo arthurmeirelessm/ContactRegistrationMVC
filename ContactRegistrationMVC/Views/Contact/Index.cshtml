@@ -31,22 +31,17 @@
     <br />
 
 
-    <table class="table table-dark table-striped">
+    <table  id="tableContacts" class="table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            @if (Model == null || !Model.Any())
-            {
-                <h2>No contact number at the moment</h2>
-                <br />
-            }
             @if (Model != null && Model.Any())
             {
                 foreach (var item in Model)
@@ -57,13 +52,17 @@
                         <td>@item.Email</td>
                         <td>@item.Number</td>
                         <td>
-                            <div class="btn-group" role="group" aria-label="basic example">
+                            <div class="btn-group" role="group">
                                 <a role="button" class="btn btn-outline-success" asp-route-id="@item.Id" asp-controller="Contact" asp-action="Edit">Edit to</a>
                                 <a role="button" class="btn btn-outline-danger" asp-route-id="@item.Id" asp-controller="Contact" asp-action="ConfirmDelete">Delete</a>
                             </div>
                         </td>
                     </tr>
                 }
+            }
+            else
+            {
+                <h2>No contact number at the moment</h2>
             }
 
         </tbody>
