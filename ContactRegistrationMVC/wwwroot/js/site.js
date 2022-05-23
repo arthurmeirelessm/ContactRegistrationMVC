@@ -1,5 +1,6 @@
 ﻿$(document).ready(function() {
     $('#tableContacts').DataTable();
+    $('#tableUsers').DataTable();
 });
 
 

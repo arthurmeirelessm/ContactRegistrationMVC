@@ -1,0 +1,73 @@
+﻿@model List<UserModel>
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn border-dark" role="banner" asp-controller="Contact" asp-action="Create">Add new contacts</a>
+    </div>
+
+    <br />
+
+    @if (TempData["MessageSuccess"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["MessageSuccess"]
+        </div>
+    }
+    
+     @if (TempData["MessageFailed"] != null) {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["MessageFailed"]
+        </div>
+    }
+
+    <h1>Users listing</h1>
+    <br />
+
+
+    <table  id="tableUsers" class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">login</th>
+                <th scope="col">Email</th>
+                 <th scope="col">DateRegistration</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <th scope="row">@user.Id</th>
+                        <td>@user.Name</td>
+                        <td>@user.Login</td>
+                        <td>@user.Email</td>
+                        <td>@user.CreatedAt</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-outline-success" asp-route-id="@user.Id" asp-controller="Contact" asp-action="Edit">Edit to</a>
+                                <a role="button" class="btn btn-outline-danger" asp-route-id="@user.Id" asp-controller="Contact" asp-action="ConfirmDelete">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <h2>No contact number at the moment</h2>
+            }
+
+        </tbody>
+    </table>
+</div>
+
