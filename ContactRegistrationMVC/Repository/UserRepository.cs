@@ -19,6 +19,9 @@ namespace ContactRegistrationMVC.Repository
         {
             // Registration in Database
 
+            UserModel identificationIfSameLogin = SameLogin(user);
+            UserModel userModelSameEmail = SameEmail(user); 
+
             user.CreatedAt = DateTime.Now;
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
@@ -54,6 +57,20 @@ namespace ContactRegistrationMVC.Repository
         {
             return _dataContext.Users.ToList();
         }
+
+        public UserModel SameLogin(UserModel user)
+        {
+            var identificationNumber = _dataContext.Users.FirstOrDefault(x => x.Login == user.Login);
+
+            return identificationNumber;
+        }
+        public UserModel SameEmail(UserModel user)
+        {
+            var identificationEmail = _dataContext.Users.FirstOrDefault(x => x.Email == user.Email);
+
+            return identificationEmail;
+        }
+
 
         public UserModel UpdateEdit(UserModel user)
         {
