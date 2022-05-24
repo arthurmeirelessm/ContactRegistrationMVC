@@ -17,6 +17,17 @@ namespace ContactRegistrationMVC.Repository
         public ContactModel Add(ContactModel contact)
         {
             // Registration in Database
+            ContactModel identifyIfEqualsNumber = SameNumber(contact);
+            ContactModel identifyIfEqualsEmail = SameEmail(contact);
+            if (identifyIfEqualsNumber is not null)
+            {
+                throw new System.Exception("Error Adding (This number already exists)");
+            }
+
+            if (identifyIfEqualsEmail is not null)
+            {
+                throw new System.Exception("Error Adding (This Email already exists)");
+            }
 
             _dataContext.Contacts.Add(contact);
             _dataContext.SaveChanges();
@@ -39,6 +50,20 @@ namespace ContactRegistrationMVC.Repository
 
             return true;
 
+        }
+
+        public ContactModel SameNumber(ContactModel contact)
+        {
+            var identificationNumber = _dataContext.Contacts.FirstOrDefault(x => x.Number == contact.Number);
+
+            return identificationNumber;
+        }
+
+        public ContactModel SameEmail(ContactModel contact)
+        {
+            var identificationEmail = _dataContext.Contacts.FirstOrDefault(x => x.Email == contact.Email);
+
+            return identificationEmail;
         }
 
         public ContactModel ListById(int id)

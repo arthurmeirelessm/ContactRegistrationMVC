@@ -1,7 +1,9 @@
 ﻿using ContactRegistrationMVC.Data;
 using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ContactRegistrationMVC.Repository
 {
@@ -17,6 +19,7 @@ namespace ContactRegistrationMVC.Repository
         {
             // Registration in Database
 
+            user.CreatedAt = DateTime.Now;
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
 
@@ -62,8 +65,10 @@ namespace ContactRegistrationMVC.Repository
             }
 
             identificationDb.Name = user.Name;
-            identificationDb.Login = user.Email;
-            identificationDb.Number = user.Number;
+            identificationDb.Login = user.Login;
+            identificationDb.Email = user.Email;
+            identificationDb.UserType = user.UserType;
+            identificationDb.DateUpAt = DateTime.Now;
 
             _dataContext.Users.Update(identificationDb);
             _dataContext.SaveChanges();
