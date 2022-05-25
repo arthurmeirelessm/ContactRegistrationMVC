@@ -29,6 +29,16 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
+        public IActionResult ConfirmDelete(int id)
+        {
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult Create(UserModel user)
@@ -54,6 +64,28 @@ namespace ContactRegistrationMVC.Controllers
             catch (System.Exception error)
             {
                 TempData["MessageFailed"] = $"User not registration. Error message {error.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+        public IActionResult DeleteContact(int id)
+        {
+            try
+            {
+                var VerifyIfDelete = _userRepository.Delete(id);
+                if (VerifyIfDelete)
+                {
+                    TempData["MessageSuccess"] = "User deleted with success";
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+
+            }
+            catch (System.Exception error)
+            {
+                TempData["MessageFailed"] = $"Failed to delete user. Error: {error.Message}";
                 return RedirectToAction("Index");
             }
         }

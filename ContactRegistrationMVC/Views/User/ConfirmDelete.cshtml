@@ -1,0 +1,15 @@
+﻿@model UserModel;
+ 
+@{
+    ViewData["Title"] = "Confirm delete";
+}
+
+<input type="hidden" asp-for="Id">
+
+<div class="text-center">
+    <h3>Do you really want to delete the this user (@Model.Name)?</h3>
+    <br />
+<a type="button" class="btn btn-success"  asp-route-id="@Model.Id" asp-controller="User" asp-action="DeleteContact">Confirm</a>
+<a type="button" class="btn btn-danger" asp-controller="User" asp-action="Index">Cancel</a>
+</div>
+
