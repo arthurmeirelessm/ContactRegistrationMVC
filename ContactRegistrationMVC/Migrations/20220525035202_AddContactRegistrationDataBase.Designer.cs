@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactRegistrationMVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220525002010_AddContactRegistrationDataBase")]
+    [Migration("20220525035202_AddContactRegistrationDataBase")]
     partial class AddContactRegistrationDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

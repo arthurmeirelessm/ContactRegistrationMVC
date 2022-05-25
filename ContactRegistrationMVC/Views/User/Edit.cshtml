@@ -1,0 +1,52 @@
+﻿@using ContactRegistrationMVC.Enums
+@model UserModel;
+
+@{
+    ViewData["Title"] = "Edit user";
+}
+
+<div class="text-center">
+    <h1>Edit user</h1>
+</div>
+
+<form asp-controller="User" asp-action="EditUser" method="post">
+
+
+    <input type="hidden" asp-for="Id">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edit name">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">E-mail</label>
+        <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword1" placeholder="Edit e-mail">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Login</label>
+        <input type="text" asp-for="Login" class="form-control" id="exampleInputPassword1" placeholder="Edit login">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">User type</label>
+        <select asp-for="UserType" class="form-control">
+            <option value="0">Select</option>
+            <option value="@UserEnum.ADM">Administrator</option>
+            <option value="@UserEnum.USERDEFAULT">Default user</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Enter user password">
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a class="btn alert-secondary" asp-controller="User" asp-action="Index" role="button">Return</a>
+
+</form>

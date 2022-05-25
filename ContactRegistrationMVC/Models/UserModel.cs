@@ -15,6 +15,7 @@ namespace ContactRegistrationMVC.Models
         [Required(ErrorMessage = "Enter your Email")]
         [EmailAddress(ErrorMessage = "The email is not valid")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Enter your Type user")]
         public UserEnum UserType { get; set; }
         [Required(ErrorMessage = "Enter password")]
         public string Password { get; set; }

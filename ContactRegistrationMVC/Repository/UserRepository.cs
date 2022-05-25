@@ -69,7 +69,7 @@ namespace ContactRegistrationMVC.Repository
 
         public UserModel UpdateEdit(UserModel user)
         {
-            user.DateUpAt = DateTime.Now;
+           
             UserModel identificationDb = ListById(user.Id);
 
             if (identificationDb is null)

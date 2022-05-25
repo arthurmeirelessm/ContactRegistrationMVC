@@ -35,9 +35,13 @@ namespace ContactRegistrationMVC.Controllers
             return View(user);
         }
 
-        public IActionResult Delete()
+        //O metodo edit precisa equalizar o id vindo da aplicação passado no index, no botão de redirecionar pra edit com os ids ja cadastrados no banco
+        //é por isso que ele retorna View passando o valor do Id encotrado pela variavel user.
+        //Assim, a view Edit es´ta ciente que irá usar o id do UserModel
+        public IActionResult Edit(int id)
         {
-            return View();
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
         }
 
         [HttpPost]
@@ -75,7 +79,7 @@ namespace ContactRegistrationMVC.Controllers
             try
             {
                 var VerifyIfDelete = _userRepository.Delete(id);
-                if (VerifyIfDelete)
+                if (VerifyIfDelete && ModelState.IsValid)
                 {
                     TempData["MessageSuccess"] = "User deleted with success";
                     return RedirectToAction("Index");
@@ -88,6 +92,28 @@ namespace ContactRegistrationMVC.Controllers
                 TempData["MessageFailed"] = $"Failed to delete user. Error: {error.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+
+        [HttpPost]
+
+        public IActionResult EditUser(UserModel user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _userRepository.UpdateEdit(user);
+                    TempData["MessageSuccess"] = "User update with success";
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception error)
+            {
+                TempData["MessageFailed"] = $"Failed to update user. Error: {error.Message}";
+                return RedirectToAction("Index");
+           }
         }
 
     }
