@@ -97,23 +97,34 @@ namespace ContactRegistrationMVC.Controllers
 
         [HttpPost]
 
-        public IActionResult EditUser(UserModel user)
+        public IActionResult EditUser(UserWithoutPasswordModel userWithoutPassword)
         {
             try
             {
+                UserModel user = null;
+
                 if (ModelState.IsValid)
                 {
+                    user = new UserModel()
+                    {
+                        Id = userWithoutPassword.Id,
+                        Name = userWithoutPassword.Name,
+                        Email = userWithoutPassword.Email,
+                        Login = userWithoutPassword.Login,
+                        UserType = userWithoutPassword.UserType
+                    };
+
                     _userRepository.UpdateEdit(user);
                     TempData["MessageSuccess"] = "User update with success";
                     return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                return View(user);
             }
             catch (System.Exception error)
             {
                 TempData["MessageFailed"] = $"Failed to update user. Error: {error.Message}";
                 return RedirectToAction("Index");
-           }
+            }
         }
 
     }
