@@ -34,8 +34,7 @@
 
     <div class="form-group">
         <label for="exampleInputPassword1">User type</label>
-        <input type="" asp-for="Login" class="form-control" id="exampleInputPassword1" placeholder="Enter your type user">
-        <select asp-for="UserType">
+        <select asp-for="UserType" class="form-control">
             <option value="0">Select</option>
             <option value="@UserEnum.ADM">Administrator</option>
             <option value="@UserEnum.USERDEFAULT">Default user</option>
@@ -44,7 +43,7 @@
 
     <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input type="text" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Enter user password">
+        <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Enter user password">
         @Html.ValidationMessageFor(x => x.Password)
     </div>
 

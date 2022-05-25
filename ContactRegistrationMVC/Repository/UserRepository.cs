@@ -13,15 +13,15 @@ namespace ContactRegistrationMVC.Repository
 
         public UserRepository(DataContext dataContext)
         {
-            this._dataContext = dataContext;
-        }
+            _dataContext = dataContext;
+        } 
         public UserModel Add(UserModel user)
         {
             // Registration in Database
 
             UserModel identificationIfSameLogin = SameLogin(user);
-            UserModel userModelSameEmail = SameEmail(user); 
-
+            UserModel userModelSameEmail = SameEmail(user);
+         
             user.CreatedAt = DateTime.Now;
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
@@ -53,11 +53,6 @@ namespace ContactRegistrationMVC.Repository
             return identification;
         }
 
-        public List<UserModel> SeachAll()
-        {
-            return _dataContext.Users.ToList();
-        }
-
         public UserModel SameLogin(UserModel user)
         {
             var identificationNumber = _dataContext.Users.FirstOrDefault(x => x.Login == user.Login);
@@ -74,6 +69,7 @@ namespace ContactRegistrationMVC.Repository
 
         public UserModel UpdateEdit(UserModel user)
         {
+            user.DateUpAt = DateTime.Now;
             UserModel identificationDb = ListById(user.Id);
 
             if (identificationDb is null)
@@ -91,6 +87,11 @@ namespace ContactRegistrationMVC.Repository
             _dataContext.SaveChanges();
 
             return identificationDb;
+        }
+
+        public List<UserModel> SeachAll()
+        {
+             return _dataContext.Users.ToList();
         }
     }
 }

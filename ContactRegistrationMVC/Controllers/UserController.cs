@@ -20,8 +20,8 @@ namespace ContactRegistrationMVC.Controllers
         //Isso indicará que essa tela precisará foi uma busca de todos os contatos registrados no backEnd
         public IActionResult Index()
         {
-            List<UserModel> users = _userRepository.SeachAll();
-            return View(users);
+            List<UserModel> seachAll = _userRepository.SeachAll();
+            return View(seachAll);
         }
 
         public IActionResult Create()

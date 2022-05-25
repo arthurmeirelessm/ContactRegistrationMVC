@@ -59,24 +59,28 @@ namespace ContactRegistrationMVC.Migrations
                     b.Property<DateTime>("DateUpAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Email")
-                        .HasColumnType("bit");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserType")
                         .HasColumnType("int");
 
-                    b.Property<string>("password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("UserModels");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
