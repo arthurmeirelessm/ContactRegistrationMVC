@@ -38,6 +38,7 @@
                 <th scope="col">Name</th>
                  <th scope="col">Email</th>
                  <th scope="col">login</th>
+                 <th scope="col">UserType</th>
                  <th scope="col">DateRegistration</th>
                 <th scope="col"></th>
             </tr>
@@ -52,6 +53,7 @@
                         <td>@user.Name</td>
                         <td>@user.Email</td>
                         <td>@user.Login</td>
+                        <td>@(user.UserType == ContactRegistrationMVC.Enums.UserEnum.ADM ? "Admin" : "User Default")</td>
                         <td>@user.CreatedAt</td>
                         <td>
                             <div class="btn-group" role="group">

@@ -20,17 +20,16 @@
     </div>
 
     <div class="form-group">
-        <label for="exampleInputPassword1">E-mail</label>
-        <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword1" placeholder="Edit e-mail">
-        @Html.ValidationMessageFor(x => x.Email)
-    </div>
-
-    <div class="form-group">
         <label for="exampleInputPassword1">Login</label>
         <input type="text" asp-for="Login" class="form-control" id="exampleInputPassword1" placeholder="Edit login">
         @Html.ValidationMessageFor(x => x.Login)
     </div>
 
+    <div class="form-group">
+        <label for="exampleInputPassword1">E-mail</label>
+        <input type="email" asp-for="Email" class="form-control" id="exampleInputPassword1" placeholder="Edit e-mail">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
     <div class="form-group">
         <label for="exampleInputPassword1">User type</label>
         <select asp-for="UserType" class="form-control">
@@ -38,9 +37,9 @@
             <option value="@UserEnum.ADM">Administrator</option>
             <option value="@UserEnum.USERDEFAULT">Default user</option>
         </select>
-          @Html.ValidationMessageFor(x => x.UserType)
+        @Html.ValidationMessageFor(x => x.UserType)
     </div>
- 
+
     <button type="submit" class="btn btn-primary">Edit</button>
     <a class="btn alert-secondary" asp-controller="User" asp-action="Index" role="button">Return</a>
 
