@@ -1,4 +1,5 @@
-﻿using ContactRegistrationMVC.Models;
+﻿using ContactRegistrationMVC.Helpers;
+using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,14 +8,21 @@ namespace ContactRegistrationMVC.Controllers
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly ISession _session;
 
-        public LoginController(IUserRepository userRepository)
+        public LoginController(IUserRepository userRepository, ISession session)
         {
             _userRepository = userRepository;
+            _session = session;
         }
 
         public IActionResult Index()
         {
+            // Se o usuario estiver com uma sessão aberta, ou seja, ja tiver logado seu perfil alguma vez na tela de login, ele será rediciondo direto pro index "Home"
+            if (_session.GetSessionOfUser() != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -29,6 +37,7 @@ namespace ContactRegistrationMVC.Controllers
 
                     if (comparateUserName != null && comparatePassword != null)
                     {
+                        _session.CreateSessionOfUser(comparateUserName);
                         return RedirectToAction("Index", "Home");
                     }
                     TempData["MessageFailed"] = "This user not found. Try again with other UserName or password";

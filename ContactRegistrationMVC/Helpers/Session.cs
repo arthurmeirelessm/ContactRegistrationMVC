@@ -31,7 +31,7 @@ namespace ContactRegistrationMVC.Helpers
 
         public void RemoveSessionOfUser()
         {
-            throw new System.NotImplementedException();
+            _iHttpContextAccessor.HttpContext.Session.Remove("sessionUserLogged");
         }
     }
 }
