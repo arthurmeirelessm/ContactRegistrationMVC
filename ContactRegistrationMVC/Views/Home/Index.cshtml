@@ -1,8 +1,17 @@
-﻿@{
+﻿@model List<DataLoginModel>
+
+
+@{
+
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Contact control system</p>
-</div>
+@if (Model != null && Model.Any())
+{
+    foreach (var values in Model) {
+        <div class="text-center">
+            <h1 class="display-4">Welcome @values.UserName</h1>
+            <p>Contact control system</p>
+        </div>
+    }
+}
