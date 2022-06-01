@@ -16,7 +16,7 @@ namespace ContactRegistrationMVC.Controllers
 
         //METODOS VIEWS, RETORNA SEMPRE REDIRECIONAMENTO DE TELA
         //Quando for realzar o CRUD, sempre indicar o tipo de metodo que aquela tela precisará
-        //como no metodo "Index" abaixo, que busca o metdo seachAll que está dentro de _contactRepository
+        //como no metodo "Index" abaixo, que busca o metdo seachAll que está dentro de _userRepository
         //Isso indicará que essa tela precisará foi uma busca de todos os contatos registrados no backEnd
         public IActionResult Index()
         {
