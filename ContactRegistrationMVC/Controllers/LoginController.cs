@@ -6,11 +6,11 @@ namespace ContactRegistrationMVC.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILoginRepository _loginRepository;
+        private readonly IUserRepository _userRepository;
 
-        public LoginController(ILoginRepository loginRepository)
+        public LoginController(IUserRepository userRepository)
         {
-            _loginRepository = loginRepository;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
@@ -18,26 +18,28 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
-
-        [HttpPost]
         public IActionResult EnterLogin(DataLoginModel dataLoginModel)
         {
             try
             {
-               if (ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
-                    var comparate = _loginRepository.ComparateLogin(dataLoginModel);
-                    if (comparate)
+                    var comparateUserName = _userRepository.ComparateUserName(dataLoginModel);
+                    var comparatePassword = _userRepository.ComparatePassword(dataLoginModel);
+
+                    if (comparateUserName != null && comparatePassword != null)
                     {
-                        TempData["MessageSuccess"] = "User enter with success";
                         return RedirectToAction("Index", "Home");
                     }
+                    TempData["MessageFailed"] = "This user not found. Try again with other UserName or password";
                 }
-               return View("Index");
-            } 
+
+                return View("Index");
+
+            }
             catch (System.Exception error)
             {
-                TempData["MessageFailed"] = $"User not enter with succes. Error: {error.Message}";
+                TempData["MessageFailed"] = $"User not enter with success. Error: {error.Message}";
                 return RedirectToAction("Index");
             }
         }

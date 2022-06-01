@@ -93,5 +93,20 @@ namespace ContactRegistrationMVC.Repository
         {
              return _dataContext.Users.ToList();
         }
+
+        public UserModel ComparateUserName(DataLoginModel dataLoginModel)
+        {
+            var comparateIfUserNameIsSame = _dataContext.Users.FirstOrDefault(x => x.Login == dataLoginModel.UserName);
+
+            return comparateIfUserNameIsSame;
+        }
+
+        public UserModel ComparatePassword(DataLoginModel dataLoginModel)
+        {
+            var comparateIfPasswordIsSame = _dataContext.Users.FirstOrDefault(x => x.Password == dataLoginModel.Password);
+
+
+            return comparateIfPasswordIsSame;
+        }
     }
 }

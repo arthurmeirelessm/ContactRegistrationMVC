@@ -10,7 +10,7 @@ namespace ContactRegistrationMVC.Models
         [Required(ErrorMessage = "Enter with your UserName")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Enter with your name")]
+        [Required(ErrorMessage = "Enter with your password")]
         public string Password { get; set; }
 
     }
