@@ -29,8 +29,13 @@ namespace ContactRegistrationMVC.Controllers
 
         public IActionResult Exit()
         {
-           _session.RemoveSessionOfUser();
+            _session.RemoveSessionOfUser();
             return RedirectToAction("Index", "Login");
+        }
+
+        public IActionResult RedefineLogin()
+        {
+            return View();
         }
 
 
@@ -62,8 +67,32 @@ namespace ContactRegistrationMVC.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult SendDataToReset(RedefineLoginModel redefineLoginModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
 
+                    var comparateUserName = _userRepository.ComparaIsUserNameIsSameToRefineLogin(redefineLoginModel);
+                    var comparateEmail = _userRepository.ComparaIsEmailIsSameToRefineLogin(redefineLoginModel);
 
+                    if (comparateUserName != null && comparateEmail != null)
+                    {
+                        TempData["MessageSuccess"] = "We have sent a new password to your registered email";
+                        return RedirectToAction("Index", "Login");
+                    }
+                    TempData["MessageFailed"] = $"Ops. Try again, we couldn't to exchange your password";
+                }
+                return View("Index");
+            }
+            catch (System.Exception error)
+            {
+                TempData["MessageFailed"] = $"Ops. Try again, we couldn't to exchange your password. Error: {error.Message}";
 
+                return View("Index");
+            }
+        }
     }
 }

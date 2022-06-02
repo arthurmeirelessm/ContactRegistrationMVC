@@ -1,0 +1,31 @@
+﻿@model RedefineLoginModel
+
+@{
+    Layout = "_LayoutLoggedOut";
+    ViewData["Title"] = "Redefine Login";
+} 
+    
+     @if (TempData["MessageFailedToRedefineLogin"] != null) {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+            @TempData["MessageFailedToRedefineLogin"]
+        </div>
+    }
+
+<form asp-controller="Login" asp-action="SendDataToReset" method="post">
+  <div class="mb-3">
+    <label for="username" class="form-label">UserName</label>
+    <input type="text"  asp-for="UserName" class="form-control" id="username">
+       @Html.ValidationMessageFor(x => x.UserName)
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="text"  asp-for="Email" class="form-control" id="email">
+       @Html.ValidationMessageFor(x => x.Email)
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Redefine Login</button>
+   <a class="btn alert-secondary" asp-controller="Login" asp-action="Index" role="button">Return</a>
+</form>

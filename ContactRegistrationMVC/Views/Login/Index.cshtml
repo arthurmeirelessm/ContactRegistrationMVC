@@ -3,25 +3,41 @@
 @{
     Layout = "_LayoutLoggedOut";
     ViewData["Title"] = "Login";
-} 
-    
-     @if (TempData["MessageFailed"] != null) {
-        <div class="alert alert-danger" role="alert">
-            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
-            @TempData["MessageFailed"]
-        </div>
-    }
+}
+
+@if (TempData["MessageSuccess"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+        @TempData["MessageSuccess"]
+    </div>
+}
+
+@if (TempData["MessageFailed"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">x</button>
+        @TempData["MessageFailed"]
+    </div>
+}
 
 <form asp-controller="Login" asp-action="EnterLogin" method="post">
-  <div class="mb-3">
-    <label for="username" class="form-label">UserName</label>
-    <input type="text"  asp-for="UserName" class="form-control" id="username">
-       @Html.ValidationMessageFor(x => x.UserName)
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password"  asp-for="Password" class="form-control" id="password">
-       @Html.ValidationMessageFor(x => x.Password)
-  </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+    <div class="mb-3">
+        <label for="username" class="form-label">UserName</label>
+        <input type="text" asp-for="UserName" class="form-control" id="username">
+        @Html.ValidationMessageFor(x => x.UserName)
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" asp-for="Password" class="form-control" id="password">
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+
+    <p class="mb-4 mx-auto">
+        Forgot your password?
+        <a asp-action="RedefineLogin" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Reset my password</a>
+    </p>
+
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>

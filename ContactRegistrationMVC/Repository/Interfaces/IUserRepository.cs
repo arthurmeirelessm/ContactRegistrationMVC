@@ -14,6 +14,8 @@ namespace ContactRegistrationMVC.Repository.Interfaces
         public bool Delete(int id);
         public UserModel ComparateUserName(DataLoginModel dataLoginModel);
         public UserModel ComparatePassword(DataLoginModel dataLoginModel);
+        public UserModel ComparaIsUserNameIsSameToRefineLogin(RedefineLoginModel redefineLoginModel);
+        public UserModel ComparaIsEmailIsSameToRefineLogin(RedefineLoginModel redefineLoginModel);
 
     }
 }

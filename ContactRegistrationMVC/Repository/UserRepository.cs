@@ -112,5 +112,22 @@ namespace ContactRegistrationMVC.Repository
 
             return comparateIfPasswordIsSame;
         }
+
+        public UserModel ComparaIsUserNameIsSameToRefineLogin(RedefineLoginModel redefineLoginModel)
+        {
+            var comparateIfUserNameIsSame = _dataContext.Users.FirstOrDefault(x => x.Login == redefineLoginModel.UserName);
+
+            return comparateIfUserNameIsSame;
+        }
+
+        public UserModel ComparaIsEmailIsSameToRefineLogin(RedefineLoginModel redefineLoginModel)
+        {
+            var comparateIfEmailIsSame = _dataContext.Users.FirstOrDefault(x => x.Email == redefineLoginModel.Email);
+
+            return comparateIfEmailIsSame;
+        }
     }
 }
+
+
+
