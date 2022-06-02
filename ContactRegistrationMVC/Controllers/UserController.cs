@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ContactRegistrationMVC.Controllers
 {
-    [PageToUserLogged]
+    [PageRestrictOnlyAdmin]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
