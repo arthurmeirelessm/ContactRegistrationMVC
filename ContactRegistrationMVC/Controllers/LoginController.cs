@@ -33,12 +33,6 @@ namespace ContactRegistrationMVC.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-        public IActionResult RedefineLogin()
-        {
-            return View();
-        }
-
-
         public IActionResult EnterLogin(DataLoginModel dataLoginModel)
         {
             try
@@ -63,36 +57,6 @@ namespace ContactRegistrationMVC.Controllers
             {
                 TempData["MessageFailed"] = $"User not enter with success. Error: {error.Message}";
                 return RedirectToAction("Index");
-            }
-        }
-
-
-        [HttpPost]
-        public IActionResult SendDataToReset(RedefineLoginModel redefineLoginModel)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var comparateIfUserNameAndEmailIsSame = _userRepository.ComparateUserNameAndEmailToReset(redefineLoginModel.UserName, redefineLoginModel.Email);
-
-
-                    if (comparateIfUserNameAndEmailIsSame != null)
-                    {
-                         string newPassword = comparateIfUserNameAndEmailIsSame.GenerateNewPassword();
-                         
-                        TempData["MessageSuccess"] = "We have sent a new password to your registered email";
-                        return RedirectToAction("Index", "Login");
-                    }
-                    TempData["MessageFailed"] = $"Ops. Try again, we couldn't to exchange your password";
-                }
-                return View("Index");
-            }
-            catch (System.Exception error)
-            {
-                TempData["MessageFailed"] = $"Ops. Try again, we couldn't to exchange your password. Error: {error.Message}";
-
-                return View("Index");
             }
         }
     }
