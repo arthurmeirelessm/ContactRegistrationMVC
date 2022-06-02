@@ -1,4 +1,5 @@
 ﻿using ContactRegistrationMVC.Enums;
+using ContactRegistrationMVC.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,6 +21,10 @@ namespace ContactRegistrationMVC.Models
         [Required(ErrorMessage = "Enter password")]
         public string Password { get; set; }
         public DateTime DateUpAt { get; set; }
+        public void SetPasswordHash()
+        {
+            Password = Password.GenerateHash();
+        }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ContactRegistrationMVC.Data;
+using ContactRegistrationMVC.Helpers;
 using ContactRegistrationMVC.Models;
 using ContactRegistrationMVC.Repository.Interfaces;
 using System;
@@ -23,6 +24,7 @@ namespace ContactRegistrationMVC.Repository
             UserModel userModelSameEmail = SameEmail(user);
          
             user.CreatedAt = DateTime.Now;
+            user.SetPasswordHash();
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
 
@@ -103,7 +105,9 @@ namespace ContactRegistrationMVC.Repository
 
         public UserModel ComparatePassword(DataLoginModel dataLoginModel)
         {
-            var comparateIfPasswordIsSame = _dataContext.Users.FirstOrDefault(x => x.Password == dataLoginModel.Password);
+
+            //O hash entra aqui tambem passado no password digitado pelo usuario e que esta como paramentro 
+            var comparateIfPasswordIsSame = _dataContext.Users.FirstOrDefault(x => x.Password == dataLoginModel.Password.GenerateHash());
 
 
             return comparateIfPasswordIsSame;
