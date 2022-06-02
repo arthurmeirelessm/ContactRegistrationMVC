@@ -74,12 +74,13 @@ namespace ContactRegistrationMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var comparateIfUserNameAndEmailIsSame = _userRepository.ComparateUserNameAndEmailToReset(redefineLoginModel.UserName, redefineLoginModel.Email);
 
-                    var comparateUserName = _userRepository.ComparaIsUserNameIsSameToRefineLogin(redefineLoginModel);
-                    var comparateEmail = _userRepository.ComparaIsEmailIsSameToRefineLogin(redefineLoginModel);
 
-                    if (comparateUserName != null && comparateEmail != null)
+                    if (comparateIfUserNameAndEmailIsSame != null)
                     {
+                         string newPassword = comparateIfUserNameAndEmailIsSame.GenerateNewPassword();
+                         
                         TempData["MessageSuccess"] = "We have sent a new password to your registered email";
                         return RedirectToAction("Index", "Login");
                     }
