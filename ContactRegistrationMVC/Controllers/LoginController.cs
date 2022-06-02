@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactRegistrationMVC.Controllers
 {
+
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;

@@ -1,4 +1,5 @@
-﻿using ContactRegistrationMVC.Helpers;
+﻿using ContactRegistrationMVC.Filters;
+using ContactRegistrationMVC.Helpers;
 using ContactRegistrationMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ContactRegistrationMVC.Controllers
 {
+    [PageToUserLogged]
     public class HomeController : Controller
     {
         private readonly ISession _session;
