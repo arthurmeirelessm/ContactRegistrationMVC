@@ -1,4 +1,5 @@
-﻿using ContactRegistrationMVC.Models;
+﻿using ContactRegistrationMVC.Helpers;
+using ContactRegistrationMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,8 @@ namespace ContactRegistrationMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ISession _session;
+
         public IActionResult Index()
         {
             return View();

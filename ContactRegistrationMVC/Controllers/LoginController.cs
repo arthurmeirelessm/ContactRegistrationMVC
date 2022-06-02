@@ -26,6 +26,13 @@ namespace ContactRegistrationMVC.Controllers
             return View();
         }
 
+        public IActionResult Exit()
+        {
+           _session.RemoveSessionOfUser();
+            return RedirectToAction("Index", "Login");
+        }
+
+
         public IActionResult EnterLogin(DataLoginModel dataLoginModel)
         {
             try

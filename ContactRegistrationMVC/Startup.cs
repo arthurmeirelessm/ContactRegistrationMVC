@@ -30,9 +30,11 @@ namespace ContactRegistrationMVC
         {
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<DataContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<Helpers.ISession, Session>();
             services.AddSession(o => 
             {
